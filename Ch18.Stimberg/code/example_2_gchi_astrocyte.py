@@ -4,8 +4,8 @@ Figure 2: Modeling of synaptically-activated astrocytes.
 Two astrocytes (one stochastic and the other deterministic) activated by
 synapses (connecting "dummy" groups of neurons) (see De Pitta' et al., 2009)
 """
-import matplotlib      # DELETE
-matplotlib.use('agg')  # DELETE
+#import matplotlib      # DELETE
+#matplotlib.use('agg')  # DELETE
 from brian2 import *
 
 import plot_utils as pu
@@ -167,14 +167,14 @@ run(duration, report='text')
 ################################################################################
 from matplotlib.ticker import FormatStrFormatter
 plt.style.use('figures.mplstyle')
-
+#plt.figure()
 # Plot Gamma_A
 fig, ax = plt.subplots(4, 1, figsize=(6.26894, 6.26894*0.66))
 ax[0].plot(astro_mon.t/second, astro_mon.Gamma_A.T)
 ax[0].set(xlim=(0., duration/second), ylim=[-0.05, 1.02], yticks=[0.0, 0.5, 1.0],
           ylabel=r'$\Gamma_{A}$')
 # Adjust axis
-pu.adjust_spines(ax[0], ['left'])
+pu.adjust_spines(ax[0], ['left'], 5, False)
 
 # Plot I
 ax[1].plot(astro_mon.t/second, astro_mon.I.T/umolar)
@@ -183,23 +183,25 @@ ax[1].set(xlim=(0., duration/second), ylim=[-0.1, 5.0],
           ylabel=r'$I$ ($\mu M$)')
 ax[1].yaxis.set_major_formatter(FormatStrFormatter('%.1f'))
 ax[1].legend(['deterministic', 'stochastic'], loc='upper left')
-pu.adjust_spines(ax[1], ['left'])
+pu.adjust_spines(ax[1], ['left'], 5, False)
 
 # Plot C
 ax[2].plot(astro_mon.t/second, astro_mon.C.T/umolar)
 ax[2].set(xlim=(0., duration/second), ylim=[-0.1, 1.3],
           ylabel=r'$C$ ($\mu M$)')
-pu.adjust_spines(ax[2], ['left'])
+pu.adjust_spines(ax[2], ['left'], 5, False)
 
 # Plot h
 ax[3].plot(astro_mon.t/second, astro_mon.h.T)
 ax[3].set(xlim=(0., duration/second),
           ylim=[0.4, 1.02],
           ylabel='h', xlabel='time ($s$)')
-pu.adjust_spines(ax[3], ['left', 'bottom'])
+pu.adjust_spines(ax[3], ['left', 'bottom'], 5, False)
 
 pu.adjust_ylabels(ax, x_offset=-0.1)
 
 # Save figures  # DELETE
-plt.savefig('../text/figures/results/example_2_gchi_astrocyte_Figure.eps', dpi=600)  # DELETE
-plt.show()
+#plt.savefig('../text/figures/results/example_2_gchi_astrocyte_Figure.eps', dpi=600)  # DELETE
+#plt.plot()
+plt.show() # this isn't needed.
+
